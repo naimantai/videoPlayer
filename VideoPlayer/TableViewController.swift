@@ -7,14 +7,13 @@
 //
 
 import UIKit
+var videosArray: [Videos] = []
 
 class TableViewController: UITableViewController {
     
     //https://dl.dropboxusercontent.com/u/25403899/VideoPlayer/VideoJSONTest.json
     private let userKey: String = "25403899/"
     let filePath: String = "VideoPlayer/VideoJSONTest.json"
-    var videosArray: [Videos] = []
-
 
     var cache: NSCache = NSCache()
     var session: NSURLSession = NSURLSession.sharedSession()
@@ -47,9 +46,11 @@ class TableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "VideoDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
+            if let indexPath = tableView.indexPathForSelectedRow,
+                   destiationVC = (segue.destinationViewController as? VideoDetailViewController){
                 let videoDic = videosArray[indexPath.row]
-                (segue.destinationViewController as? VideoDetailViewController)?.videoDic = videoDic
+                destiationVC.videoDic = videoDic
+                destiationVC.indexPathRow = indexPath.row
             }
         }
     }
@@ -135,7 +136,7 @@ class TableViewController: UITableViewController {
                 // Update UI
                 dispatch_async(dispatch_get_main_queue()){
                 
-                    self.videosArray = videosDataArray.videosData
+                    videosArray = videosDataArray.videosData
                     
                     self.tableView.reloadData()
                     print("videosArray Init successfully")
