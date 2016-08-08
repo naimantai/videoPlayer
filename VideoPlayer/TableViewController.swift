@@ -7,18 +7,15 @@
 //
 
 import UIKit
+var videosArray: [Videos] = []
 
 class TableViewController: UITableViewController {
     
     //https://dl.dropboxusercontent.com/u/25403899/VideoPlayer/VideoJSONTest.json
     private let userKey: String = "25403899/"
     let filePath: String = "VideoPlayer/VideoJSONTest.json"
-    var videosArray: [Videos] = []
 
-
-    var cache: NSCache = NSCache()
-    var session: NSURLSession = NSURLSession.sharedSession()
-    var task: NSURLSessionDownloadTask = NSURLSessionDownloadTask()
+    let imageCache = ImageCache()
     
 
     override func viewDidLoad() {
@@ -47,9 +44,11 @@ class TableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "VideoDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
+            if let indexPath = tableView.indexPathForSelectedRow,
+                   destiationVC = (segue.destinationViewController as? VideoDetailViewController){
                 let videoDic = videosArray[indexPath.row]
-                (segue.destinationViewController as? VideoDetailViewController)?.videoDic = videoDic
+                destiationVC.videoDic = videoDic
+                destiationVC.indexPathRow = indexPath.row
             }
         }
     }
@@ -90,28 +89,21 @@ class TableViewController: UITableViewController {
         
 
         // Set image from cache
-        if (self.cache.objectForKey(indexPath.row) != nil){
-            cell.thumbnail?.image = self.cache.objectForKey(indexPath.row) as? UIImage
+        if let image = imageCache.cache.objectForKey(indexPath.row){
+            cell.thumbnail?.image = image as? UIImage
         }else{
             cell.thumbnail?.image = UIImage(named: "default")
             // Download Image
-                if let thumbnailURL = video.thumbnail {
-                    task = session.downloadTaskWithURL(thumbnailURL) { (location, response, error) -> Void in
-                        if let data = NSData(contentsOfURL: thumbnailURL){
-                            // Get main queue for image
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                // Update cell
-                                if let updateCell = tableView.cellForRowAtIndexPath(indexPath) as? VideoTableViewCell {
-                                    let thumbnailImg:UIImage! = UIImage(data: data)
-                                    updateCell.thumbnail?.image = thumbnailImg
-                                    self.cache.setObject(thumbnailImg, forKey: indexPath.row)
-                                }
-                            })
-                        }
+            if let thumbnailURL = video.thumbnail {
+                imageCache.cacheImage(thumbnailURL) { (image) in
+                    if let updateCell = tableView.cellForRowAtIndexPath(indexPath) as? VideoTableViewCell {
+                        updateCell.thumbnail?.image = image
+                        self.imageCache.cache.setObject(image, forKey: indexPath.row)
                     }
-                    task.resume()
                 }
+            }
         }
+
         
         
         // Insert tableView cell gradient
@@ -135,7 +127,7 @@ class TableViewController: UITableViewController {
                 // Update UI
                 dispatch_async(dispatch_get_main_queue()){
                 
-                    self.videosArray = videosDataArray.videosData
+                    videosArray = videosDataArray.videosData
                     
                     self.tableView.reloadData()
                     print("videosArray Init successfully")
