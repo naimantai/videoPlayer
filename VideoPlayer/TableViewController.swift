@@ -7,25 +7,28 @@
 //
 
 import UIKit
+var videosArray: [Videos] = []
+var filteredArray: [Videos] = []
+var shouldShowSearchResults = false
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController,UISearchResultsUpdating,UISearchBarDelegate,CustomSearchControllerDelegate {
+    @IBOutlet weak var navigationItemBar: UINavigationItem!
     
     //https://dl.dropboxusercontent.com/u/25403899/VideoPlayer/VideoJSONTest.json
     private let userKey: String = "25403899/"
     let filePath: String = "VideoPlayer/VideoJSONTest.json"
-    var videosArray: [Videos] = []
 
-
-    var cache: NSCache = NSCache()
-    var session: NSURLSession = NSURLSession.sharedSession()
-    var task: NSURLSessionDownloadTask = NSURLSessionDownloadTask()
-    
+    let imageCache = ImageCache()
+    let searchController: UISearchController = UISearchController(searchResultsController: nil)
+    var customSearchController: CustomSearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configView()
         retriveData()
+        //configureSearchController()
+        configureCustomSearchController()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -47,9 +50,11 @@ class TableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "VideoDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
+            if let indexPath = tableView.indexPathForSelectedRow,
+                   destiationVC = (segue.destinationViewController as? VideoDetailViewController){
                 let videoDic = videosArray[indexPath.row]
-                (segue.destinationViewController as? VideoDetailViewController)?.videoDic = videoDic
+                destiationVC.videoDic = videoDic
+                destiationVC.indexPathRow = indexPath.row
             }
         }
     }
@@ -69,12 +74,31 @@ class TableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return videosArray.count
+        if shouldShowSearchResults {
+            return filteredArray.count
+        }
+        else {
+            print("videosArraycount")
+            return videosArray.count
+        }
+        
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("VideoCell") as! VideoTableViewCell
-        let video = videosArray[indexPath.row]
+        var video:Videos
+        
+        print("cellForRowAtIndexPath")
+        
+        if shouldShowSearchResults {
+            video = filteredArray[indexPath.row]
+            print("return filterArrayCell")
+        }
+        else {
+            video = videosArray[indexPath.row]
+            print("return videosArrayCell")
+        }
+        
         // set UI
         if let name = video.title {
             cell.nameLabel?.text = name
@@ -90,37 +114,20 @@ class TableViewController: UITableViewController {
         
 
         // Set image from cache
-        if (self.cache.objectForKey(indexPath.row) != nil){
-            cell.thumbnail?.image = self.cache.objectForKey(indexPath.row) as? UIImage
+        if let image = imageCache.cache.objectForKey(indexPath.row){
+            cell.thumbnail?.image = image as? UIImage
         }else{
             cell.thumbnail?.image = UIImage(named: "default")
             // Download Image
-                if let thumbnailURL = video.thumbnail {
-                    task = session.downloadTaskWithURL(thumbnailURL) { (location, response, error) -> Void in
-                        if let data = NSData(contentsOfURL: thumbnailURL){
-                            // Get main queue for image
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                // Update cell
-                                if let updateCell = tableView.cellForRowAtIndexPath(indexPath) as? VideoTableViewCell {
-                                    let thumbnailImg:UIImage! = UIImage(data: data)
-                                    updateCell.thumbnail?.image = thumbnailImg
-                                    self.cache.setObject(thumbnailImg, forKey: indexPath.row)
-                                }
-                            })
-                        }
+            if let thumbnailURL = video.thumbnail {
+                imageCache.cacheImage(thumbnailURL) { (image) in
+                    if let updateCell = tableView.cellForRowAtIndexPath(indexPath) as? VideoTableViewCell {
+                        updateCell.thumbnail?.image = image
+                        self.imageCache.cache.setObject(image, forKey: indexPath.row)
                     }
-                    task.resume()
                 }
+            }
         }
-        
-        
-        // Insert tableView cell gradient
-        let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-        let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
-        let gradient = CAGradientLayer()
-        gradient.frame = cell.frame
-        gradient.colors = [color1.CGColor,color2.CGColor]
-        cell.layer.insertSublayer(gradient, atIndex: 1)
         
         return cell
     }
@@ -135,7 +142,7 @@ class TableViewController: UITableViewController {
                 // Update UI
                 dispatch_async(dispatch_get_main_queue()){
                 
-                    self.videosArray = videosDataArray.videosData
+                    videosArray = videosDataArray.videosData
                     
                     self.tableView.reloadData()
                     print("videosArray Init successfully")
@@ -150,6 +157,105 @@ class TableViewController: UITableViewController {
     
     }
     
+    // MARK: - Search Results
+    func configureSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        //navigationItemBar.titleView = searchController.searchBar
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func filterContentForSearchText(searchText: String) {
+        filteredArray = videosArray.filter({ (videos:Videos) -> Bool in
+            let titleMatch = videos.title?.rangeOfString(searchText, options: .CaseInsensitiveSearch)
+            let tagMatch = videos.category?.rangeOfString(searchText, options: .CaseInsensitiveSearch)
+            if titleMatch != nil || tagMatch != nil {
+                return true
+            } else {
+                return false
+            }
+        })
+    }
+    
+    
+    // CustomSearchController
+    func configureCustomSearchController() {
+        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRectMake(0.0, 0.0, tableView.frame.size.width, 64.0), searchBarFont: UIFont(name: "Futura", size: 12.0)!, searchBarTextColor: UIColor.darkGrayColor(), searchBarTintColor: UIColor(white: 1, alpha: 1), backgroundColor:UIColor.clearColor())
+        
+        customSearchController.customSearchBar.placeholder = "Search for a name or a tag..."
+        navigationItemBar.titleView = customSearchController.customSearchBar
+        //tableView.tableHeaderView = customSearchController.customSearchBar
+        customSearchController.customDelegate = self
+    }
+    
+    
+    // MARK: UISearchBarDelegate functions
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        shouldShowSearchResults = true
+        self.tableView.reloadData()
+        
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        shouldShowSearchResults = false
+        self.tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if !shouldShowSearchResults {
+            shouldShowSearchResults = true
+            tableView.reloadData()
+        }
+        
+        searchController.searchBar.resignFirstResponder()
+    }
+
+    
+    
+    // MARK: UISearchResultsUpdating delegate function
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else {
+            return
+        }
+        // Filter the data array
+        filterContentForSearchText(searchText)
+        
+        // Reload the tableview.
+        self.tableView.reloadData()
+        
+    }
+    
+    
+    // MARK: CustomSearchControllerDelegate functions
+    
+    func didStartSearching() {
+        shouldShowSearchResults = true
+        tableView.reloadData()
+    }
+    
+    
+    func didTapOnSearchButton() {
+        if !shouldShowSearchResults {
+            shouldShowSearchResults = true
+            tableView.reloadData()
+        }
+    }
+    
+    
+    func didTapOnCancelButton() {
+        shouldShowSearchResults = false
+        tableView.reloadData()
+    }
+    
+    
+    func didChangeSearchText(searchText: String) {
+        filterContentForSearchText(searchText)
+        tableView.reloadData()
+    }
     
 
 }
