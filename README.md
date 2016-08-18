@@ -1,2 +1,2 @@
 # Full Function
-8/18 finish all the functions without finding bug
+8/18 finish all the functions without finding a bug
