@@ -16,7 +16,7 @@ class VideoService {
     
     init(key: String) {
         userKey = key
-        cloudBaseUrl = NSURL(string: "https://dl.dropboxusercontent.com/u/\(userKey)")
+        cloudBaseUrl = NSURL(string: "https://static.tumblr.com/\(userKey)/")
     }
     
     func getVideos(filePath: String, completion: VideosArray? -> Void) {
