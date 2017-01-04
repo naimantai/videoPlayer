@@ -10,10 +10,13 @@
 		0B0F3DE41CF48BE00012B84F /* DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F3DE31CF48BE00012B84F /* DownloadImage.swift */; };
 		0B28DEDD1CBBD59700CD835D /* ThumbnailImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B28DEDC1CBBD59700CD835D /* ThumbnailImage.swift */; };
 		0B2B71351D73E61000E1AE51 /* TableDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2B71341D73E61000E1AE51 /* TableDetailView.swift */; };
+<<<<<<< HEAD
 		0B2CAD281DF404A4005D7AA4 /* VideosDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CAD261DF404A4005D7AA4 /* VideosDataModel.xcdatamodeld */; };
 		0B2CAD2A1DF404D9005D7AA4 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CAD291DF404D9005D7AA4 /* DataController.swift */; };
 		0B2CAD311DF40747005D7AA4 /* VideoDataEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CAD2F1DF40747005D7AA4 /* VideoDataEntity+CoreDataClass.swift */; };
 		0B2CAD321DF40747005D7AA4 /* VideoDataEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2CAD301DF40747005D7AA4 /* VideoDataEntity+CoreDataProperties.swift */; };
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 		0B3473DE1D58B9AE006F457C /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3473DD1D58B9AE006F457C /* ImageCache.swift */; };
 		0B3567241D72014B0054EFFC /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3567231D72014B0054EFFC /* ListTableViewCell.swift */; };
 		0B4B175A1CD7A86C00DECDC6 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4B17591CD7A86C00DECDC6 /* VideoTableViewCell.swift */; };
@@ -58,10 +61,13 @@
 		0B0F3DE31CF48BE00012B84F /* DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadImage.swift; sourceTree = "<group>"; };
 		0B28DEDC1CBBD59700CD835D /* ThumbnailImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailImage.swift; sourceTree = "<group>"; };
 		0B2B71341D73E61000E1AE51 /* TableDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDetailView.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		0B2CAD271DF404A4005D7AA4 /* VideosDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VideosDataModel.xcdatamodel; sourceTree = "<group>"; };
 		0B2CAD291DF404D9005D7AA4 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		0B2CAD2F1DF40747005D7AA4 /* VideoDataEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VideoDataEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0B2CAD301DF40747005D7AA4 /* VideoDataEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VideoDataEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 		0B3473DD1D58B9AE006F457C /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		0B3567231D72014B0054EFFC /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		0B4B17591CD7A86C00DECDC6 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
@@ -126,7 +132,10 @@
 				0B0F3DE31CF48BE00012B84F /* DownloadImage.swift */,
 				0B9F623E1CAAAB6B00003B98 /* NetworkOperation.swift */,
 				0B9F62411CAABA0E00003B98 /* VideoService.swift */,
+<<<<<<< HEAD
 				0B2CAD261DF404A4005D7AA4 /* VideosDataModel.xcdatamodeld */,
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -138,7 +147,10 @@
 				0B76C3C41D64008800F1FDBB /* ListViewController.swift */,
 				0BBB5E251D61E68200BC5BB7 /* CustomSearchController.swift */,
 				0BEDAD681CF342FE0020FEB9 /* VideoDetailViewController.swift */,
+<<<<<<< HEAD
 				0B2CAD291DF404D9005D7AA4 /* DataController.swift */,
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -180,8 +192,11 @@
 		0BDEF8391C8DA384004715F7 = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				0B2CAD2F1DF40747005D7AA4 /* VideoDataEntity+CoreDataClass.swift */,
 				0B2CAD301DF40747005D7AA4 /* VideoDataEntity+CoreDataProperties.swift */,
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 				0BDEF8441C8DA384004715F7 /* VideoPlayer */,
 				0BDEF8591C8DA384004715F7 /* VideoPlayerTests */,
 				0BDEF8641C8DA384004715F7 /* VideoPlayerUITests */,
@@ -297,18 +312,27 @@
 					0BDEF8411C8DA384004715F7 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 48XD59469V;
+<<<<<<< HEAD
 						LastSwiftMigration = 0810;
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 					};
 					0BDEF8551C8DA384004715F7 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 48XD59469V;
+<<<<<<< HEAD
 						LastSwiftMigration = 0810;
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 						TestTargetID = 0BDEF8411C8DA384004715F7;
 					};
 					0BDEF8601C8DA384004715F7 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 48XD59469V;
+<<<<<<< HEAD
 						LastSwiftMigration = 0810;
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 						TestTargetID = 0BDEF8411C8DA384004715F7;
 					};
 				};
@@ -366,20 +390,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B76C3C51D64008800F1FDBB /* ListViewController.swift in Sources */,
+<<<<<<< HEAD
 				0B2CAD281DF404A4005D7AA4 /* VideosDataModel.xcdatamodeld in Sources */,
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 				0BBB5E261D61E68200BC5BB7 /* CustomSearchController.swift in Sources */,
 				0B8173B21CBFD20800B81390 /* TableViewController.swift in Sources */,
 				0B3473DE1D58B9AE006F457C /* ImageCache.swift in Sources */,
 				0B0F3DE41CF48BE00012B84F /* DownloadImage.swift in Sources */,
+<<<<<<< HEAD
 				0B2CAD311DF40747005D7AA4 /* VideoDataEntity+CoreDataClass.swift in Sources */,
 				0B558C521D6EA72400CC6DD8 /* NavigationBar.swift in Sources */,
 				0B2CAD2A1DF404D9005D7AA4 /* DataController.swift in Sources */,
+=======
+				0B558C521D6EA72400CC6DD8 /* NavigationBar.swift in Sources */,
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 				0B2B71351D73E61000E1AE51 /* TableDetailView.swift in Sources */,
 				0BD45FAC1CA958060035C935 /* CodeTest.swift in Sources */,
 				0B558C541D6EDB6E00CC6DD8 /* TableViewBackground.swift in Sources */,
 				0B9F62421CAABA0E00003B98 /* VideoService.swift in Sources */,
 				0B3567241D72014B0054EFFC /* ListTableViewCell.swift in Sources */,
+<<<<<<< HEAD
 				0B2CAD321DF40747005D7AA4 /* VideoDataEntity+CoreDataProperties.swift in Sources */,
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 				0B4B175A1CD7A86C00DECDC6 /* VideoTableViewCell.swift in Sources */,
 				0B9F623F1CAAAB6B00003B98 /* NetworkOperation.swift in Sources */,
 				0BBB5E241D61D88200BC5BB7 /* CustomSearchBar.swift in Sources */,
@@ -531,7 +565,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.neven.VideoPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
 				SWIFT_VERSION = 3.0;
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 			};
 			name = Debug;
 		};
@@ -543,7 +580,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.neven.VideoPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
 				SWIFT_VERSION = 3.0;
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 			};
 			name = Release;
 		};
@@ -555,7 +595,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.neven.VideoPlayerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
 				SWIFT_VERSION = 3.0;
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VideoPlayer.app/VideoPlayer";
 			};
 			name = Debug;
@@ -568,7 +611,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.neven.VideoPlayerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
 				SWIFT_VERSION = 3.0;
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VideoPlayer.app/VideoPlayer";
 			};
 			name = Release;
@@ -580,7 +626,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.neven.VideoPlayerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
 				SWIFT_VERSION = 3.0;
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 				TEST_TARGET_NAME = VideoPlayer;
 				USES_XCTRUNNER = YES;
 			};
@@ -593,7 +642,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.neven.VideoPlayerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
 				SWIFT_VERSION = 3.0;
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 				TEST_TARGET_NAME = VideoPlayer;
 				USES_XCTRUNNER = YES;
 			};
@@ -639,6 +691,7 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+<<<<<<< HEAD
 
 /* Begin XCVersionGroup section */
 		0B2CAD261DF404A4005D7AA4 /* VideosDataModel.xcdatamodeld */ = {
@@ -652,6 +705,8 @@
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 	};
 	rootObject = 0BDEF83A1C8DA384004715F7 /* Project object */;
 }

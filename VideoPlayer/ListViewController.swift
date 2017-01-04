@@ -9,7 +9,11 @@
 import UIKit
 
 protocol ListViewControllerDelegate:class {
+<<<<<<< HEAD
     func didTapOnListRow(_ listString: String)
+=======
+    func didTapOnListRow(listString: String)
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 }
 
 class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
@@ -39,7 +43,11 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         selectedListString = ""
     }
     
+<<<<<<< HEAD
     func numberOfSections(in tableView: UITableView) -> Int {
+=======
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         return 1
     }
     
@@ -47,6 +55,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //        return "Category"
 //    }
     
+<<<<<<< HEAD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 32
     }
@@ -62,12 +71,33 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         cell.listLabel?.attributedText = underlineAttributedString
         cell.listLabel?.textColor = UIColor.white
         cell.backgroundColor = UIColor.clear
+=======
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 32
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listArray.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ListCell", forIndexPath: indexPath) as!ListTableViewCell
+        let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue,NSUnderlineColorAttributeName: UIColor(white: 1, alpha: 0.5) ]
+        let underlineAttributedString = NSAttributedString(string: listArray[indexPath.row], attributes: underlineAttribute)
+        cell.listLabel?.attributedText = underlineAttributedString
+        cell.listLabel?.textColor = UIColor.whiteColor()
+        cell.backgroundColor = UIColor.clearColor()
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 
         
         return cell
     }
     
+<<<<<<< HEAD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+=======
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         selectedListString = listArray[indexPath.row]
         
         if let listString = selectedListString {
@@ -79,6 +109,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     // MARK: - Table View Delegate
     
+<<<<<<< HEAD
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath)
@@ -86,6 +117,15 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
         let highlightView = UIView()
         highlightView.backgroundColor = UIColor.clear
+=======
+    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.contentView.backgroundColor = UIColor(white: 1, alpha: 0.2)
+        
+        let highlightView = UIView()
+        highlightView.backgroundColor = UIColor.clearColor()
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         cell?.selectedBackgroundView = highlightView
     }
     
@@ -100,7 +140,11 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 //        }
 //    }
     
+<<<<<<< HEAD
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+=======
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         scrollView.bounces = (scrollView.contentOffset.y > 100)
     }
     

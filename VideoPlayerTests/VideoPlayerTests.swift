@@ -30,7 +30,11 @@ class VideoPlayerTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
+<<<<<<< HEAD
         self.measure {
+=======
+        self.measureBlock {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
             // Put the code you want to measure the time of here.
         }
     }

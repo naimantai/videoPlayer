@@ -17,7 +17,11 @@ class ListTableViewCell: UITableViewCell {
         // Initialization code
     }
 
+<<<<<<< HEAD
     override func setSelected(_ selected: Bool, animated: Bool) {
+=======
+    override func setSelected(selected: Bool, animated: Bool) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

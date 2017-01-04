@@ -12,6 +12,7 @@ import Foundation
 class VideoService {
     
     let userKey:String
+<<<<<<< HEAD
     let cloudBaseUrl: URL?
     
     init(key: String) {
@@ -26,6 +27,22 @@ class VideoService {
             print(jsonFilePath)
             let networkOperation = NetworkOperation(url: jsonFilePath)
             networkOperation.downloadJSONList{ (jsonDictionary) in
+=======
+    let cloudBaseUrl: NSURL?
+    
+    init(key: String) {
+        userKey = key
+        cloudBaseUrl = NSURL(string: "https://static.tumblr.com/\(userKey)/")
+    }
+    
+    func getVideos(filePath: String, completion: VideosArray? -> Void) {
+        
+        if let jsonFilePath = NSURL(string: filePath, relativeToURL: cloudBaseUrl) {
+            
+            print(jsonFilePath)
+            let networkOperation = NetworkOperation(url: jsonFilePath)
+            networkOperation.downloadJSONList{ (let jsonDictionary) in
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                 let videosArray = VideosArray(videosDictionary: jsonDictionary)
                 completion(videosArray)
             }

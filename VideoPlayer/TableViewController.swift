@@ -7,8 +7,11 @@
 //
 
 import UIKit
+<<<<<<< HEAD
 import CoreData
 
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 var videosArray: [Videos] = []
 var filteredArray: [Videos] = []
 var shouldShowSearchResults = false
@@ -16,7 +19,11 @@ var shouldShowSearchResults = false
 
 class TableViewController: UITableViewController,UISearchResultsUpdating,CustomSearchControllerDelegate,ListViewControllerDelegate {
     @IBOutlet var searchItem: UIBarButtonItem?
+<<<<<<< HEAD
     fileprivate let userKey: String = "vlkmvct"
+=======
+    private let userKey: String = "vlkmvct"
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
     let filePath: String = "K2nocptij/videojsontest.json"
     
     let imageCache = ImageCache()
@@ -37,12 +44,18 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
         configView()
         retriveData()
         configureCustomSearchController()
+<<<<<<< HEAD
         
         seedVideoData()
         fetch()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+=======
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         configView()
     }
     
@@ -50,7 +63,11 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
         
         // Hook ListViewController to Storyboard
         mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+<<<<<<< HEAD
         listViewController = mainStoryboard?.instantiateViewController(withIdentifier: "ListViewController") as? ListViewController
+=======
+        listViewController = mainStoryboard?.instantiateViewControllerWithIdentifier("ListViewController") as? ListViewController
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         
         // Set row height
         tableView.rowHeight = 133
@@ -59,10 +76,17 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
 
     // MARK: - Segue to Detail View
     
+<<<<<<< HEAD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "VideoDetail" {
             if let indexPath = tableView.indexPathForSelectedRow,
                    let destiationVC = (segue.destination as? VideoDetailViewController){
+=======
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "VideoDetail" {
+            if let indexPath = tableView.indexPathForSelectedRow,
+                   destiationVC = (segue.destinationViewController as? VideoDetailViewController){
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                 var videoDic:Videos?
                 if shouldShowSearchResults {
                     videoDic = filteredArray[indexPath.row]
@@ -83,12 +107,20 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
 
     // MARK: - Table view data source
 
+<<<<<<< HEAD
     override func numberOfSections(in tableView: UITableView) -> Int {
+=======
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
+<<<<<<< HEAD
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+=======
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         // #warning Incomplete implementation, return the number of rows
         if shouldShowSearchResults {
             return filteredArray.count
@@ -99,11 +131,19 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
         
     }
 
+<<<<<<< HEAD
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell") as! VideoTableViewCell
         var video:Videos
         
         cell.backgroundColor = UIColor.clear
+=======
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("VideoCell") as! VideoTableViewCell
+        var video:Videos
+        
+        cell.backgroundColor = UIColor.clearColor()
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         
         if shouldShowSearchResults {
             video = filteredArray[indexPath.row]
@@ -128,7 +168,11 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
 
         // Set image from cache
         if let thumbnailURL = video.thumbnail,
+<<<<<<< HEAD
             let image = imageCache.cache.object(forKey: thumbnailURL as AnyObject){
+=======
+            image = imageCache.cache.objectForKey(thumbnailURL){
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
             cell.thumbnail?.image = image as? UIImage
             cell.blackGradient = true
             cell.setNeedsDisplay()
@@ -137,9 +181,15 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
             // Download Image
             if let thumbnailURL = video.thumbnail {
                 imageCache.cacheImage(thumbnailURL) { (image) in
+<<<<<<< HEAD
                     if let updateCell = tableView.cellForRow(at: indexPath) as? VideoTableViewCell {
                         updateCell.thumbnail?.image = image
                         self.imageCache.cache.setObject(image, forKey: thumbnailURL as AnyObject)
+=======
+                    if let updateCell = tableView.cellForRowAtIndexPath(indexPath) as? VideoTableViewCell {
+                        updateCell.thumbnail?.image = image
+                        self.imageCache.cache.setObject(image, forKey: thumbnailURL)
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                         updateCell.blackGradient = true
                         updateCell.setNeedsDisplay()
                     }
@@ -152,6 +202,7 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     
     // MARK: - Table view Delegate
     
+<<<<<<< HEAD
     override func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.contentView.backgroundColor = UIColor.clear
@@ -162,6 +213,18 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+=======
+    override func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.contentView.backgroundColor = UIColor.clearColor()
+        
+        let highlightView = UIView()
+        highlightView.backgroundColor = UIColor.clearColor()
+        cell?.selectedBackgroundView = highlightView
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         scrollView.bounces = (scrollView.contentOffset.y > 100)
     }
     
@@ -171,10 +234,17 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     func retriveData() {
         
         let videoService = VideoService(key: userKey)
+<<<<<<< HEAD
         videoService.getVideos(filePath) { (videosData) in
             if let videosDataArray = videosData {
                 // Update UI
                 DispatchQueue.main.async{
+=======
+        videoService.getVideos(filePath) { (let videosData) in
+            if let videosDataArray = videosData {
+                // Update UI
+                dispatch_async(dispatch_get_main_queue()){
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                 
                     videosArray = videosDataArray.videosData
                     
@@ -190,22 +260,37 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     
     // MARK: - IBAction
     
+<<<<<<< HEAD
     @IBAction func closeDetailView(_ segue: UIStoryboardSegue) {
+=======
+    @IBAction func closeDetailView(segue: UIStoryboardSegue) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         print("Close Detail View")
         
         
     }
     
+<<<<<<< HEAD
     @IBAction func searchButton(_ sender: UIBarButtonItem) {
+=======
+    @IBAction func searchButton(sender: UIBarButtonItem) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         shouldShowSearchResults = true
         didChangeSearchText("")
         
         if let searchBar = customSearchController!.customSearchBar {
             // Scroll to top
+<<<<<<< HEAD
             self.tableView.contentOffset = CGPoint(x: 0, y: 0 - self.tableView.contentInset.top)
             
             // disable Table View Scroll
             self.tableView.isScrollEnabled = false
+=======
+            self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top)
+            
+            // disable Table View Scroll
+            self.tableView.scrollEnabled = false
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
             
             // Add search bar view
             self.navigationItem.rightBarButtonItem = nil
@@ -216,7 +301,11 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
         if let list = listViewController {
             addChildViewController(list)
             self.tableView.addSubview(list.view)
+<<<<<<< HEAD
             list.didMove(toParentViewController: self)
+=======
+            list.didMoveToParentViewController(self)
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
             list.delegate = self
         }
         
@@ -229,10 +318,17 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     
     // MARK: - Search Results
     
+<<<<<<< HEAD
     func filterContentForSearchText(_ searchText: String) {
         filteredArray = videosArray.filter({ (videos:Videos) -> Bool in
             let titleMatch = videos.title?.range(of: searchText, options: .caseInsensitive)
             let tagMatch = videos.category?.range(of: searchText, options: .caseInsensitive)
+=======
+    func filterContentForSearchText(searchText: String) {
+        filteredArray = videosArray.filter({ (videos:Videos) -> Bool in
+            let titleMatch = videos.title?.rangeOfString(searchText, options: .CaseInsensitiveSearch)
+            let tagMatch = videos.category?.rangeOfString(searchText, options: .CaseInsensitiveSearch)
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
             if titleMatch != nil || tagMatch != nil {
                 return true
             } else {
@@ -243,7 +339,11 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     
     // CustomSearchController
     func configureCustomSearchController() {
+<<<<<<< HEAD
         customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRect(x: 5.0, y: 5.0, width: tableView.frame.size.width - 10.0, height: 30.0), searchBarFont: UIFont(name: "HelveticaNeue-Thin", size: 14.0)!, searchBarTextColor: UIColor.white, searchBarTintColor: UIColor.clear , backgroundColor:UIColor.clear)
+=======
+        customSearchController = CustomSearchController(searchResultsController: self, searchBarFrame: CGRectMake(5.0, 5.0, tableView.frame.size.width - 10.0, 30.0), searchBarFont: UIFont(name: "HelveticaNeue-Thin", size: 14.0)!, searchBarTextColor: UIColor.whiteColor(), searchBarTintColor: UIColor.clearColor() , backgroundColor:UIColor.clearColor())
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         
         customSearchController!.customDelegate = self
     }
@@ -252,7 +352,11 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     
     // MARK: UISearchResultsUpdating delegate function
     
+<<<<<<< HEAD
     func updateSearchResults(for searchController: UISearchController) {
+=======
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         guard let searchText = searchController.searchBar.text else {
             return
         }
@@ -273,8 +377,13 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
             
             // Set Cancel Button
             if let font = UIFont(name: "HelveticaNeue", size: 14),
+<<<<<<< HEAD
                 let cancelButton = searchBar.value(forKey: "cancelButton") as? UIButton{
                 cancelButton.setTitle("Cancel", for: UIControlState())
+=======
+                let cancelButton = searchBar.valueForKey("cancelButton") as? UIButton{
+                cancelButton.setTitle("Cancel", forState: .Normal)
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                 cancelButton.titleLabel!.font = font
             } else {
                 print("set cancel fail")
@@ -284,7 +393,11 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
             print("didStartSearching")
             
             for subView in searchBar.subviews {
+<<<<<<< HEAD
                 if subView.isKind(of: UIView.self) {
+=======
+                if subView.isKindOfClass(UIView) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                     subView.frame = CGRect(x: subView.frame.origin.x, y: 5, width: subView.frame.size.width, height: subView.frame.size.height)
                 }
                 
@@ -305,7 +418,11 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     
     func didTapOnCancelButton() {
         // enable Table View Scroll
+<<<<<<< HEAD
         self.tableView.isScrollEnabled = true
+=======
+        self.tableView.scrollEnabled = true
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         
         // Remove search bar
         customSearchController?.customSearchBar?.showsCancelButton = false
@@ -326,7 +443,11 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     }
     
     
+<<<<<<< HEAD
     func didChangeSearchText(_ searchText: String) {
+=======
+    func didChangeSearchText(searchText: String) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         filterContentForSearchText(searchText)
         print("didChangeSearchText")
         
@@ -334,17 +455,28 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
         if let listView = listViewController?.view {
             if searchText.characters.count > 0 {
                 // enable Table View Scroll
+<<<<<<< HEAD
                 self.tableView.isScrollEnabled = true
+=======
+                self.tableView.scrollEnabled = true
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                 
                 print("remove list view")
                 self.tableView.willRemoveSubview(listView)
                 listView.removeFromSuperview()
             } else {
                 // Scroll to top
+<<<<<<< HEAD
                 self.tableView.contentOffset = CGPoint(x: 0, y: 0 - self.tableView.contentInset.top)
                 
                 // disable Table View Scroll
                 self.tableView.isScrollEnabled = false
+=======
+                self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top)
+                
+                // disable Table View Scroll
+                self.tableView.scrollEnabled = false
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                 
                 // Add list View Back
                 print("add list view back")
@@ -360,7 +492,11 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     
     // MARK: ListViewControllerDelegate functions
     
+<<<<<<< HEAD
     func didTapOnListRow(_ listString: String) {
+=======
+    func didTapOnListRow(listString: String) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         self.selectedListString = listString
         print("detect tap Delegate")
     }
@@ -379,12 +515,18 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
     
     // MARK: - Remove Child View Controller
     
+<<<<<<< HEAD
     func removeViewController(_ viewController: UIViewController) {
         viewController.willMove(toParentViewController: nil)
+=======
+    func removeViewController(viewController: UIViewController) {
+        viewController.willMoveToParentViewController(nil)
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         self.tableView.willRemoveSubview(viewController.view)
         viewController.view.removeFromSuperview()
         viewController.removeFromParentViewController()
     }
+<<<<<<< HEAD
     
     
     
@@ -424,5 +566,7 @@ class TableViewController: UITableViewController,UISearchResultsUpdating,CustomS
         }
     }
     
+=======
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
 
 }

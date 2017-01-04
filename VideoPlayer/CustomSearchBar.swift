@@ -22,15 +22,24 @@ class CustomSearchBar: UISearchBar {
         preferredFont = font
         preferredTextColor = textColor
         preferredFieldColor = barColor
+<<<<<<< HEAD
         isTranslucent = true
         searchBarStyle = .prominent
+=======
+        translucent = true
+        searchBarStyle = .Prominent
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
+<<<<<<< HEAD
     override func draw(_ rect: CGRect) {
+=======
+    override func drawRect(rect: CGRect) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
         // Find the index of the search field in the search bar subviews.
         if let index = indexOfSearchFieldInSubview() {
             // Access the search field
@@ -38,7 +47,11 @@ class CustomSearchBar: UISearchBar {
             textField = searchField
             
             // Set Frame
+<<<<<<< HEAD
             searchField.frame = searchField.frame.offsetBy(dx: 0, dy: 5)
+=======
+            searchField.frame = CGRectOffset(searchField.frame, 0, 5)
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
             
             // Set the font and text color of the search field.
             searchField.font = preferredFont
@@ -61,20 +74,33 @@ class CustomSearchBar: UISearchBar {
             // Set Image and Button in Text Field
             if let glassIconView = searchField.leftView as? UIImageView {
                 //Magnifying glass
+<<<<<<< HEAD
                 glassIconView.image = glassIconView.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+=======
+                glassIconView.image = glassIconView.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                 glassIconView.tintColor = preferredTextColor
             }
             
             // Set Clear Button
+<<<<<<< HEAD
             if let clearButton = searchField.value(forKey: "clearButton") as? UIButton {
                 clearButton.setImage(clearButton.imageView?.image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: UIControlState())
+=======
+            if let clearButton = searchField.valueForKey("clearButton") as? UIButton {
+                clearButton.setImage(clearButton.imageView?.image?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                 clearButton.tintColor = preferredTextColor
             }
             
 
             
         }
+<<<<<<< HEAD
         super.draw(rect)
+=======
+        super.drawRect(rect)
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
     }
     
     
@@ -83,7 +109,11 @@ class CustomSearchBar: UISearchBar {
         let searchBarView = subviews[0]
         
         for i in 0 ..< searchBarView.subviews.count {
+<<<<<<< HEAD
             if searchBarView.subviews[i].isKind(of: UITextField.self) {
+=======
+            if searchBarView.subviews[i].isKindOfClass(UITextField) {
+>>>>>>> d24be9b5f6f367243313cba66c181f8a58e259c9
                 index = i
                 break
             }
